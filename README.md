@@ -11,9 +11,9 @@ This repository contains the code, methodology, and scripts required for hydrolo
 Due to large file sizes (over 100 MB), the contents of the `data/` folder are not included in the repository. You must download the corresponding datasets from the release tag or external sources and place them in the following structure:
 
 - `data/` — Raw and preprocessed data files  
-  - `climate/` — ERA5-Land downloads  
-  - `terrain/` — Historical GloFAS streamflow files  
-  - `dicharge/` — Geometries for extraction and aggregation  
+  - `climate/` — ERA5-Land reanalysis climate data  
+  - `terrain/` — Flow direction and accumulation layers (e.g., from HydroSHEDS)  
+  - `discharge/` — Streamflow data from GloFAS and extraction geometries (points or basins)  
 
 - `notebooks/` — Jupyter notebooks for exploratory analysis and modeling  
   - `Extract_Basins.ipynb` — Delineation of watersheds using flow direction and accumulation rasters  
@@ -95,3 +95,11 @@ conda env create -f environment.yml
 conda activate SWIM_WaterBalance
 pip install git+https://github.com/navass11/pysheds
 ```
+
+---
+
+## 👥 Authors
+
+This project is developed by the Hydrology and Climate group at [IHCantabria](https://www.ihcantabria.com/)
+
+---
