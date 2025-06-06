@@ -75,6 +75,13 @@ Each of these steps is encapsulated in modular Python functions within the `SWIM
 
 ---
 
+## 📚 References
+
+- Joint Research Center, Copernicus Emergency Management Service (2019): River discharge and related historical data from the Global Flood Awareness System. Early Warning Data Store (EWDS). DOI: 10.24381/cds.a4fdd6b9 (Accessed on 01-JUN-2025)
+- Muñoz Sabater, J. (2019): ERA5-Land monthly averaged data from 1950 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 10.24381/cds.68d2bb30 (Accessed on 01-JUN-2025)
+
+---
+
 ## ⚙️ Requirements
 
 To reproduce the environment and run the code, follow the steps below.
@@ -103,3 +110,12 @@ pip install git+https://github.com/navass11/pysheds
 This project is developed by the Hydrology and Climate group at [IHCantabria](https://www.ihcantabria.com/)
 
 ---
+
+
+## 📄 License
+
+This project is licensed under the **GNU General Public License v3.0**.  
+You are free to use, modify, and distribute this software under the terms of the GPL license.  
+See the [`LICENSE`](./LICENSE) file for full legal terms.
+
+> 🔗 More about the GPL-3.0 License: [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
