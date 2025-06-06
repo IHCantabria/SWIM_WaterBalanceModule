@@ -6,25 +6,46 @@ This repository contains the code, methodology, and scripts required for hydrolo
 
 ## 📦 Repository Structure
 
+This repository is organized into logical directories to support the full workflow of streamflow modeling using reanalysis climate and hydrological data.
+
+---
+
 ### 📁 Required Data (Manual Download)
 
-Due to large file sizes (over 100 MB), the contents of the `data/` folder are not included in the repository. You must download the corresponding datasets from the release tag or external sources and place them in the following structure:
+> ⚠️ **Important:** The `data/` directory is not included in this repository due to storage limitations (some files exceed 100 MB).  
+> To run the complete modeling pipeline, you must **manually download the required datasets** from the official sources listed below and organize them as follows:
 
-- `data/` — Raw and preprocessed data files  
-  - `climate/` — ERA5-Land reanalysis climate data  
-  - `terrain/` — Flow direction and accumulation layers (e.g., from HydroSHEDS)  
-  - `discharge/` — Streamflow data from GloFAS and extraction geometries (points or basins)  
+- `data/` — Raw and preprocessed datasets  
+  - `climate/` — ERA5-Land reanalysis variables: precipitation (`tp`), temperature (`t2m`), solar radiation (`ssrd`), wind speed (`sfcWind`), etc.  
+    - 📥 Source: [Copernicus Climate Data Store (CDS)](https://cds.climate.copernicus.eu/)  
+  - `terrain/` — Flow direction and flow accumulation rasters for watershed delineation  
+    - 📥 Source: [HydroSHEDS](https://www.hydrosheds.org/)  
+  - `discharge/` — GloFAS v4.0 streamflow time series and shapefiles for basin or point-based extraction  
+    - 📥 Source: [Copernicus EWDS Portal](https://ewds.climate.copernicus.eu/datasets/cems-glofas-historical?tab=overview)
 
-- `notebooks/` — Jupyter notebooks for exploratory analysis and modeling  
-  - `Extract_Basins.ipynb` — Delineation of watersheds using flow direction and accumulation rasters  
-  - `Create_Regression_Models.ipynb` — Training and validation of machine learning models to predict streamflow from climate variables
+> 🗂️ Ensure the directory structure matches this format so that scripts and notebooks can locate the data correctly.
 
-- `src/` — Modular source code  
-  - `SWIM.py` — Functions for climate-discharge modeling: preprocessing, model training, and prediction
+---
 
-- `requirements.txt` — Project dependencies
+### 📒 Jupyter Notebooks
 
-- `README.md` — This file
+- `notebooks/` — Interactive notebooks for exploratory data analysis and model development  
+  - `Extract_Basins.ipynb` — Watershed delineation using flow direction and accumulation rasters  
+  - `Create_Regression_Models.ipynb` — Training and evaluation of discharge prediction models based on climate variables
+
+---
+
+### 🧠 Source Code
+
+- `src/` — Modular Python functions  
+  - `SWIM.py` — Core logic for climate-discharge modeling, including preprocessing, model training, and prediction
+
+---
+
+### 📄 Additional Files
+
+- `environment.yml` — Conda environment definition for dependency management  
+- `README.md` — Project overview and usage instructions (this file)
 
 ---
 
