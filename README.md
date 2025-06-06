@@ -6,20 +6,21 @@ This repository contains the code, methodology, and scripts required for hydrolo
 
 ## 📦 Repository Structure
 
+### 📁 Required Data (Manual Download)
+
+Due to large file sizes (over 100 MB), the contents of the `data/` folder are not included in the repository. You must download the corresponding datasets from the release tag or external sources and place them in the following structure:
+
 - `data/` — Raw and preprocessed data files  
   - `climate/` — ERA5-Land downloads  
   - `terrain/` — Historical GloFAS streamflow files  
   - `dicharge/` — Geometries for extraction and aggregation  
 
-- `notebooks/` — Jupyter notebooks for exploratory analysis and modeling
+- `notebooks/` — Jupyter notebooks for exploratory analysis and modeling  
+  - `Extract_Basins.ipynb` — Delineation of watersheds using flow direction and accumulation rasters  
+  - `Create_Regression_Models.ipynb` — Training and validation of machine learning models to predict streamflow from climate variables
 
 - `src/` — Modular source code  
-  - `preprocessing.py` — Cleaning, interpolation and aggregation  
-  - `extraction.py` — NetCDF data extraction by coordinates or polygons  
-  - `models.py` — ML model definition, training and validation  
-  - `utils.py` — Auxiliary functions  
-
-- `outputs/` — Generated results (models, figures, reports)
+  - `SWIM.py` — Functions for climate-discharge modeling: preprocessing, model training, and prediction
 
 - `requirements.txt` — Project dependencies
 
@@ -45,26 +46,52 @@ This repository contains the code, methodology, and scripts required for hydrolo
 
 ## 🧠 Modeling Approach
 
-The modeling workflow includes the following steps:
+The modeling workflow follows a structured pipeline to estimate river discharge using machine learning techniques driven by global climate reanalysis data:
 
-1. **Preprocessing climate and streamflow data**  
-   - Spatial clipping and aggregation by basin or point  
-   - Gap filling and normalization
+1. **Climate and Discharge Data Preprocessing**  
+   - Monthly aggregation of ERA5-Land variables (e.g., precipitation, temperature, radiation, wind)  
+   - Extraction and temporal alignment of streamflow series from GloFAS v4.0  
+   - Temporal normalization: shifting monthly dates to the first day and removing anomalies  
+   - Spatial operations: clipping to basin geometry or selecting nearest pixel to pour point
 
-2. **Training machine learning models**  
-   - Algorithms: Random Forest, Gradient Boosting, LSTM  
-   - Cross-validation by time period and region  
-   - Metrics: NSE, R², RMSE, PBIAS
+2. **Model Training and Evaluation**  
+   - Construction of feature matrices from gridded climate data  
+   - Optional dimensionality reduction using PCA (configurable variance threshold)  
+   - Training regression models: e.g., Support Vector Regression (SVR), Random Forest, XGBoost  
+   - Evaluation using hydrological metrics:  
+     - NSE (Nash–Sutcliffe Efficiency)  
+     - R² (Coefficient of Determination)  
+     - PBIAS (Percent Bias)  
+     - RMSE (Root Mean Square Error)  
+   - Automated selection and saving of the best-performing model
 
-3. **Historical reconstruction and scenario simulation**  
-   - Use of synthetic or reanalysis-based forcing  
-   - Models trained with ERA5 + GloFAS series
+3. **Discharge Prediction from New Climate Data**  
+   - Application of trained models on new or future climate datasets  
+   - Output: simulated monthly streamflow series with performance visualization  
+   - Comparison with observed series using scatter plots, time series, and cumulative flow curves  
+   - Model and results exported to disk for reproducibility
+
+Each of these steps is encapsulated in modular Python functions within the `SWIM.py` module, ensuring flexibility and reusability.
 
 ---
 
 ## ⚙️ Requirements
 
-Install dependencies using:
+To reproduce the environment and run the code, follow the steps below.
+
+### 📥 1. Clone the repository
+
+First, clone this repository to your local machine:
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/<your-org-or-username>/SWIM_WaterBalanceModule.git
+cd SWIM_WaterBalanceModule
+```
+
+### 🔧2.  Create the environment
+
+```bash
+conda env create -f environment.yml
+conda activate SWIM_WaterBalance
+pip install git+https://github.com/navass11/pysheds
+```

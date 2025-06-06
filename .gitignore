@@ -9,4 +9,5 @@ data/terrain/sa_dir_3s_COLOMBIA.tif.vat.cpg
 data/terrain/sa_dir_3s_COLOMBIA.tif.xml
 data/climate/climate_data.nc
 data/discharge/discharge.nc
+data/*
 *.pyc
