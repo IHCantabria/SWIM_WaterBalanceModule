@@ -10,7 +10,7 @@ This repository is organized into logical directories to support the full workfl
 
 ### 📁 Required Data (Manual Download)
 
-> ⚠️ **Important:** The `data/` directory is not included in this repository due to storage limitations (some files exceed 100 MB).  
+> ⚠️ **Important:** The `data/` directory is not included in this repository due to storage limitations.  
 > To run the complete modeling pipeline, you must **manually download the required datasets** from the official sources listed below and organize them as follows:
 
 - `data/` — Raw and preprocessed datasets  
