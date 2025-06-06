@@ -79,6 +79,7 @@ Each of these steps is encapsulated in modular Python functions within the `SWIM
 
 - Joint Research Center, Copernicus Emergency Management Service (2019): River discharge and related historical data from the Global Flood Awareness System. Early Warning Data Store (EWDS). DOI: 10.24381/cds.a4fdd6b9 (Accessed on 01-JUN-2025)
 - Muñoz Sabater, J. (2019): ERA5-Land monthly averaged data from 1950 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 10.24381/cds.68d2bb30 (Accessed on 01-JUN-2025)
+- Navas, S., & del Jesus, M. . (2025). SIMPCCe: una herramienta para el análisis de aportaciones a embalses ante escenarios de cambio climático. Ingeniería Del Agua, 29(2), 132–148. https://doi.org/10.4995/ia.2025.23217
 
 ---
 
