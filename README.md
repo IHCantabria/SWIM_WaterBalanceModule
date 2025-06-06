@@ -121,7 +121,7 @@ pip install git+https://github.com/navass11/pysheds
 
 ## 👥 Authors
 
-This project is developed by the Hydrology and Climate group at [IHCantabria](https://www.ihcantabria.com/)
+This project is developed by the **Hydroclimatology Group** group at [IHCantabria](https://www.ihcantabria.com/)
 
 ---
 
