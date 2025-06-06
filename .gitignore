@@ -9,9 +9,6 @@ data/terrain/sa_dir_3s_COLOMBIA.tif.vat.cpg
 data/terrain/sa_dir_3s_COLOMBIA.tif.xml
 data/climate/climate_data.nc
 data/discharge/discharge.nc
-data/climate/*
-data/dicharge/*
-data/terrain/*
 *.pyc
 data/data.zip
 data/Models_1/AdaBoostRegressor_best_model_Flow.joblib
@@ -34,3 +31,13 @@ data/Models_2/MLPRegressor_best_model_Flow.joblib
 data/Models_2/pipeline_Flow.pkl
 data/Models_2/scaler_Flow.pkl
 data/Models_2/SVR_best_model_Flow.joblib
+data/terrain/Ituango_basin.cpg
+data/terrain/Ituango_basin.dbf
+data/terrain/Ituango_basin.prj
+data/terrain/Ituango_basin.shp
+data/terrain/Ituango_basin.shx
+data/terrain/Medellin_basin.cpg
+data/terrain/Medellin_basin.dbf
+data/terrain/Medellin_basin.prj
+data/terrain/Medellin_basin.shp
+data/terrain/Medellin_basin.shx
