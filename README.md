@@ -8,8 +8,6 @@ This repository contains the code, methodology, and scripts required for hydrolo
 
 This repository is organized into logical directories to support the full workflow of streamflow modeling using reanalysis climate and hydrological data.
 
----
-
 ### 📁 Required Data (Manual Download)
 
 > ⚠️ **Important:** The `data/` directory is not included in this repository due to storage limitations (some files exceed 100 MB).  
@@ -25,22 +23,16 @@ This repository is organized into logical directories to support the full workfl
 
 > 🗂️ Ensure the directory structure matches this format so that scripts and notebooks can locate the data correctly.
 
----
-
 ### 📒 Jupyter Notebooks
 
 - `notebooks/` — Interactive notebooks for exploratory data analysis and model development  
   - `Extract_Basins.ipynb` — Watershed delineation using flow direction and accumulation rasters  
   - `Create_Regression_Models.ipynb` — Training and evaluation of discharge prediction models based on climate variables
 
----
-
 ### 🧠 Source Code
 
 - `src/` — Modular Python functions  
   - `SWIM.py` — Core logic for climate-discharge modeling, including preprocessing, model training, and prediction
-
----
 
 ### 📄 Additional Files
 
