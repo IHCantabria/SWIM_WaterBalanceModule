@@ -1,0 +1,26 @@
+# To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
+matplotlib
+scipy
+xarray 
+pandas 
+geopandas
+ipykernel
+seaborn
+statsmodels
+dask
+scikit-learn
+lmoments3
+tqdm
+gstools
+networkx
+cartopy
+mamba
+rioxarray
+fiona
+rasterio
+scikit-learn
+scikit-image
+pandas
+geopandas
+pyyaml
+hydroeval
