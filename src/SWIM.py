@@ -25,11 +25,11 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import GradientBoostingRegressor, AdaBoostRegressor
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error, make_scorer
+from sklearn.exceptions import ConvergenceWarning
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
-
-
+warnings.simplefilter(action='ignore', category=ConvergenceWarning)
 
 def nse_func(X_train_scaled, Y_train_scaled):
     nse  = he.evaluator(he.nse, X_train_scaled, Y_train_scaled)[0]

@@ -65,6 +65,11 @@ To connect to the container via SSH, use the following command:
 ```sh
 ssh root@localhost -p 2222
 ```
+Each time you recreate the container, it generates a new **SSH host key**.  
+If you had previously connected, SSH will detect that the key has changed and will display a warning about a possible _man-in-the-middle_ attack, blocking the connection for security reasons.
+```sh
+ssh-keygen -R [localhost]:2222
+```
 
 Use the password `salva`.
 

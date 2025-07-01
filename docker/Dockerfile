@@ -1,5 +1,5 @@
 # Start from the python:3.10.0-bullseye image
-FROM python:3.10.0-bullseye
+FROM python:3.12.11-bullseye
 
 # Set environment variables to prevent Python from writing pyc files to disc and buffering stdout and stderr
 ENV PYTHONDONTWRITEBYTECODE=1
