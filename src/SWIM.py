@@ -497,7 +497,7 @@ class WaterBalanceModule:
             Monthly climate dataset to use for prediction.
         model_name : str
             Name of the trained model to load (without suffix).
-            Example: 'SVR' will load 'SVR_best_model_FLOW.joblib'
+            Example: 'SVR' will load 'SVR_best_model_Flow.joblib'
         model_dir : str, optional
             Directory where trained models and scalers are stored.
         predictors : list of str
@@ -541,7 +541,7 @@ class WaterBalanceModule:
         X_eof = pipeline.transform(X_scaled)
 
         # Load model
-        model_file = os.path.join(model_dir, f"{model_name}_best_model_FLOW.joblib")
+        model_file = os.path.join(model_dir, f"{model_name}_best_model_Flow.joblib")
         if not os.path.exists(model_file):
             raise FileNotFoundError(f"Model file not found: {model_file}")
 
