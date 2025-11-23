@@ -602,7 +602,55 @@ class WaterBalanceModule:
 
         return pred_df
 
+class ReservoirBalanceModule(object):
+    # Class to carry out a monthly water balance
+    def __init__(self, area_volume_curve_file, max_volume=np.inf, max_level=np.inf, current_level=None, current_volume=None):
+        self.max_volume = max_volume # in Hm3
+        self.max_level = max_level # in m
+        self.current_level = current_level # in m
+        self.current_volume = current_volume # in Hm3
 
+        from scipy.interpolate import CubicSpline
+        avc_data = pd.read_excel(area_volume_curve_file, skiprows=8)
+        avc_data.columns = ["Level", "Area", "UseVol", "TotVol"]
+        self.curve = avc_data[["Level", "UseVol"]].dropna()
+        self.curve = self.curve.sort_values(by="Level")
+        self.f_level_to_volume = CubicSpline(self.curve.Level, self.curve.UseVol)
+        self.f_volume_to_level = CubicSpline(self.curve.UseVol, self.curve.Level)
+
+        if self.current_level is not None and self.current_volume is not None:
+            raise ValueError(
+                "Either the current level of the reservoir or the current stored"
+                "volume could be stated, but not both at the same time")
+        elif self.current_level is None and self.current_volume is None:
+            self.current_volume = 2.
+            self.current_level = float(self.f_volume_to_level(self.current_volume))
+        elif self.current_level is None:
+            self.current_volume = current_volume
+            self.current_level = float(self.f_volume_to_level(self.current_volume))
+        else:
+            self.current_level = current_level
+            self.current_volume = float(self.f_level_to_volume(self.current_level))
+
+    def solve_reservoir_balance(self, discharge, demand):
+        # Dicharge and demand are assume to be given in m3/s.
+        self.current_volume += (discharge - demand) * 3600. * 24. * 30. / 1.e6
+        if self.current_volume >= self.max_volume:
+            self.current_volume = self.max_volume
+        elif self.current_volume <= 0:
+            self.current_volume = 0
+        self.current_level = float(self.f_volume_to_level(self.current_volume))
+        # print(self.current_volume, "  --  ", self.current_level)
+
+    def get_current_level(self):
+        return self.current_level
+
+    def get_current_volume(self):
+        return self.current_volume
+
+    def get_fraction(self):
+        return self.current_volume / self.max_volume
+        
 
 
 
