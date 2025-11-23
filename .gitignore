@@ -3243,3 +3243,4 @@ docker/.vscode-server/extensions/github.vscode-pull-request-github-0.112.0/Third
 docker/.wget-hsts
 *.bak
 src/.ipynb_checkpoints/SWIM-checkpoint.py
+/notebooks/.ipynb_checkpoints/
