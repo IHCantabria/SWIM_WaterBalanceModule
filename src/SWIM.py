@@ -617,6 +617,9 @@ class ReservoirBalanceModule(object):
         self.curve = self.curve.sort_values(by="Level")
         self.f_level_to_volume = CubicSpline(self.curve.Level, self.curve.UseVol)
         self.f_volume_to_level = CubicSpline(self.curve.UseVol, self.curve.Level)
+        self.curveb = avc_data[["UseVol", "Area"]].dropna()
+        self.curveb = self.curveb.sort_values(by="UseVol")
+        self.f_volume_to_area = CubicSpline(self.curveb.UseVol, self.curveb.Area)
 
         if self.current_level is not None and self.current_volume is not None:
             raise ValueError(
@@ -632,9 +635,10 @@ class ReservoirBalanceModule(object):
             self.current_level = current_level
             self.current_volume = float(self.f_level_to_volume(self.current_level))
 
-    def solve_reservoir_balance(self, discharge, demand):
+    def solve_reservoir_balance(self, discharge, demand, evaporation):
         # Dicharge and demand are assume to be given in m3/s.
-        self.current_volume += (discharge - demand) * 3600. * 24. * 30. / 1.e6
+        # Evaporation is given in mm per month
+        self.current_volume += (discharge - demand) * 3600. * 24. * 30. / 1.e6 - evaporation / 1e5 * float(self.f_volume_to_area(self.current_volume))
         if self.current_volume >= self.max_volume:
             self.current_volume = self.max_volume
         elif self.current_volume <= 0:
